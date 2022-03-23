@@ -1,0 +1,51 @@
+---
+# tasks file for initproject
+
+- name: Create OCP Project
+  block:
+  - name: Log in (obtain access token)
+    #kubernetes.core.k8s_auth:
+    #community.okd.openshift_auth:
+    #community.okd.k8s_auth:
+    redhat.openshift.openshift_auth:
+      username: "{{ username }}"
+      password: "{{ password }}"
+      host: "{{ api_url }}"
+      validate_certs: false
+    register: k8s_auth_results
+
+  - name: Create Namespace {{ namespace_name }}
+    redhat.openshift.k8s:
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      state: present
+      definition:
+        kind: Namespace
+        apiVersion: v1
+        metadata:
+          annotations:
+            project-size: "{{ size }}"
+          name: "{{ namespace_name }}"
+
+  - name: Create Resource Quota
+    redhat.openshift.k8s:
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      state: present
+      definition: "{{ lookup('template', '{{ size }}-resourcequota.yml.j2' ) }}"
+
+  - name: Create Limit Range
+    redhat.openshift.k8s:
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      state: present
+      definition: "{{ lookup('template', '{{ size }}-limitrange.yml.j2' ) }}"
+
+  always:
+  - name: If login succeeded, try to log out (revoke access token)
+    when: k8s_auth_results.k8s_auth.api_key is defined
+    #kubernetes.core.k8s_auth:
+    #community.okd.openshift_auth:
+    #community.okd.k8s_auth:
+    redhat.openshift.openshift_auth:
+      state: absent
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      host: "{{ api_url }}"
+      validate_certs: false

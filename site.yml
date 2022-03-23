@@ -1,0 +1,9 @@
+- hosts: all
+  module_defaults:
+    group/k8s:
+      host: "{{ api_url }}"
+      validate_certs: no
+  vars_files:
+    - secret.yml
+  roles:
+    - managednamespace

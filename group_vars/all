@@ -1,0 +1,10 @@
+# API URL of Openshift 4 Instance
+api_url: "{{ openshift_api_url }}"
+# Application domain
+apps_domain: "{{ openshift_apps_domain }}"
+# Openshift User
+username: "{{ openshift_user }}"
+# Openshift Password
+password: "{{ openshift_password }}"
+# Project name
+namespace_name: "{{ openshift_namespace }}"

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-quota
+  namespace: "{{ namespace_name }}"
+spec:
+  hard:
+    cpu: "{{ cpu }}"
+    memory: "{{ memory }}"
+    persistentvolumeclaims: "{{ persistentvolumeclaims }}"
+
