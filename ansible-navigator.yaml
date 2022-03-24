@@ -1,0 +1,9 @@
+ansible-navigator:
+  ansible:
+    playbook: site.yml
+  app: run
+  execution-environment:
+    pull-policy: missing
+  mode: stdout
+  playbook-artifact:
+    enable: False

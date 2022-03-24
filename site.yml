@@ -1,5 +1,4 @@
-- hosts: all
-  gather_facts: false
+- hosts: localhost
 #  module_defaults:
 #    group/k8s:
 #      host: "{{ api_url }}"
