@@ -1,4 +1,5 @@
 - hosts: all
+  gather_facts: false
 #  module_defaults:
 #    group/k8s:
 #      host: "{{ api_url }}"
