@@ -1,5 +1,5 @@
-- hosts: localhost
-  connection: local
+- hosts: all
+#  connection: local
 #  module_defaults:
 #    group/k8s:
 #      host: "{{ api_url }}"
