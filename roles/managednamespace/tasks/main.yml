@@ -8,9 +8,9 @@
     #community.okd.openshift_auth:
     #community.okd.k8s_auth:
     redhat.openshift.openshift_auth:
-      username: "{{ username }}"
-      password: "{{ password }}"
-      host: "{{ api_url }}"
+      username: "{{ openshift_user }}"
+      password: "{{ openshift_password }}"
+      host: "{{ openshift_api_url }}"
       validate_certs: false
     register: k8s_auth_results
 
@@ -24,7 +24,7 @@
         metadata:
           annotations:
             project-size: "{{ size }}"
-          name: "{{ namespace_name }}"
+          name: "{{ openshift_namespace }}"
 
   - name: Create Resource Quota
     redhat.openshift.k8s:
