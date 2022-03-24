@@ -6,7 +6,7 @@
 
   - name: Print variables
     ansible.builtin.debug:
-    msg: host {{ openshift_api_url }} username {{ openshift_user }}
+      msg: host {{ openshift_api_url }} username {{ openshift_user }}
     
   - name: Log in (obtain access token)
     #kubernetes.core.k8s_auth:
