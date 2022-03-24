@@ -4,10 +4,6 @@
 - name: Create OCP Project
   block:
 
-  - name: Print variables
-    ansible.builtin.debug:
-      msg: host {{ openshift_api_url }} username {{ openshift_user }}
-    
   - name: Log in (obtain access token)
     #kubernetes.core.k8s_auth:
     #community.okd.openshift_auth:
@@ -19,7 +15,7 @@
       validate_certs: false
     register: k8s_auth_results
 
-  - name: Create Namespace {{ namespace_name }}
+  - name: Create Namespace {{ openshift_namespace }}
     redhat.openshift.k8s:
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
       state: present
