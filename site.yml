@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
 #  module_defaults:
 #    group/k8s:
 #      host: "{{ api_url }}"
