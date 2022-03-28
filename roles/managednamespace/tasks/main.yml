@@ -16,7 +16,7 @@
     register: k8s_auth_results
 
   - name: "Create Namespace {{ openshift_namespace }}"
-    redhat.openshift.k8s:
+    kubernetes.core.k8s:
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
       state: present
       definition:
