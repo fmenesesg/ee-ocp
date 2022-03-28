@@ -13,18 +13,16 @@
       password: "{{ openshift_password }}"
       host: "{{ openshift_api_url }}"
       validate_certs: false
-    register: k8s_auth_results
+    register: openshift_auth_results
 
   - name: Print the token
     ansible.builtin.debug:
-      msg: token {{ k8s_auth_results.k8s_auth.api_key }}
+      msg: token {{ openshift_auth_results.openshift_auth.api_key }}
 
   - name: "Create Namespace {{ openshift_namespace }}"
     kubernetes.core.k8s:
-      #      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      api_key: "{{ openshift_auth_results.openshift_auth.api_key }}"
       state: present
-      username: "{{ openshift_user }}"
-      password: "{{ openshift_password }}"
       definition:
         kind: Namespace
         apiVersion: v1
