@@ -11,8 +11,8 @@
     redhat.openshift.openshift_auth:
       username: "{{ openshift_user }}"
       password: "{{ openshift_password }}"
-        #      host: "{{ openshift_api_url }}"
-        #      validate_certs: false
+      host: "{{ openshift_api_url }}"
+      validate_certs: false
     register: openshift_auth_results
 
   - name: Print the token
