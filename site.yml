@@ -4,6 +4,9 @@
     redhat.openshift.openshift_auth:
       host: "{{ openshift_api_url }}"
       validate_certs: false
+    redhat.openshift.k8s:
+      host: "{{ openshift_api_url }}"
+      validate_certs: false
   vars_files:
     - secret.yml
   roles:
