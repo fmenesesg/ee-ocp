@@ -1,7 +1,7 @@
 - hosts: localhost
 #  connection: local
   module_defaults:
-    group/redhat.openshift.openshift_auth:
+    group/redhat.openshift.k8s:
       host: "{{ openshift_api_url }}"
       validate_certs: false
   vars_files:
