@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
 #  connection: local
   module_defaults:
     redhat.openshift.k8s:
