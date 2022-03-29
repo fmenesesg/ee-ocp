@@ -34,24 +34,24 @@
 
   - name: Create Resource Quota
     redhat.openshift.k8s:
-      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      api_key: "{{ openshift_auth_results.openshift_auth.api_key }}"
       state: present
       definition: "{{ lookup('template', '{{ size }}-resourcequota.yml.j2' ) }}"
 
   - name: Create Limit Range
     redhat.openshift.k8s:
-      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      api_key: "{{ openshift_auth_results.openshift_auth.api_key }}"
       state: present
       definition: "{{ lookup('template', '{{ size }}-limitrange.yml.j2' ) }}"
 
   always:
   - name: If login succeeded, try to log out (revoke access token)
-    when: k8s_auth_results.k8s_auth.api_key is defined
+    when: openshift_auth_results.openshift_auth.api_key is defined
     #kubernetes.core.k8s_auth:
     #community.okd.openshift_auth:
     #community.okd.k8s_auth:
     redhat.openshift.openshift_auth:
       state: absent
-      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      api_key: "{{ openshift_auth_results.openshift_auth.api_key }}"
       #host: "{{ api_url }}"
       #validate_certs: false
