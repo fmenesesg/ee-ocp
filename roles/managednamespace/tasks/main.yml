@@ -11,8 +11,8 @@
     redhat.openshift.openshift_auth:
       username: "{{ openshift_user }}"
       password: "{{ openshift_password }}"
-      host: "{{ openshift_api_url }}"
-      validate_certs: false
+      #host: "{{ openshift_api_url }}"
+      #validate_certs: false
     register: openshift_auth_results
 
   - name: Print the token
@@ -23,7 +23,6 @@
     kubernetes.core.k8s:
       api_key: "{{ openshift_auth_results.openshift_auth.api_key }}"
       state: present
-      host: "{{ openshift_api_url }}"
       validate_certs: false
       definition:
         kind: Namespace
@@ -54,5 +53,5 @@
     redhat.openshift.openshift_auth:
       state: absent
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
-      host: "{{ api_url }}"
-      validate_certs: false
+      #host: "{{ api_url }}"
+      #validate_certs: false

@@ -1,9 +1,9 @@
 - hosts: all
 #  connection: local
-#  module_defaults:
-#    group/k8s:
-#      host: "{{ openshift_api_url }}"
-#      validate_certs: false
+  module_defaults:
+    group/redhat.openshift.k8s:
+      host: "{{ openshift_api_url }}"
+      validate_certs: false
   vars_files:
     - secret.yml
   roles:
