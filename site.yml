@@ -1,5 +1,4 @@
 - hosts: all
-#  connection: local
   module_defaults:
     redhat.openshift.openshift_auth:
       host: "{{ openshift_api_url }}"
