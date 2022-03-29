@@ -5,10 +5,10 @@
   block:
 
   - name: Log in (obtain access token)
-    kubernetes.core.k8s_auth:
+    #kubernetes.core.k8s_auth:
     #community.okd.openshift_auth:
     #community.okd.k8s_auth:
-    #redhat.openshift.openshift_auth:
+    redhat.openshift.openshift_auth:
       username: "{{ openshift_user }}"
       password: "{{ openshift_password }}"
       host: "{{ openshift_api_url }}"
@@ -48,10 +48,10 @@
   always:
   - name: If login succeeded, try to log out (revoke access token)
     when: k8s_auth_results.k8s_auth.api_key is defined
-    kubernetes.core.k8s_auth:
+    #kubernetes.core.k8s_auth:
     #community.okd.openshift_auth:
     #community.okd.k8s_auth:
-    #redhat.openshift.openshift_auth:
+    redhat.openshift.openshift_auth:
       state: absent
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
       host: "{{ api_url }}"
